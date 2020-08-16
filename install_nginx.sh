@@ -5,6 +5,8 @@
 #sudo chmod  777 -R /etc/ssl/certs/
 echo "Copying nginx keys to /etc/ssl/ ...."
 sudo mv /tmp/etc/ssl/nginx /etc/ssl/
+
+
 sudo chown  root:root -R /etc/ssl/nginx/
 sudo chmod  777 -R /etc/ssl/nginx/
 
@@ -22,9 +24,11 @@ sudo apt-get install -y nginx-plus-module-headers-more
 echo "Making nginx backup ...."
 sudo mv /etc/nginx /tmp/etc/nginx-backup
 sudo mv /tmp/etc/nginx /etc/
+
 sudo ln -s /usr/lib/nginx/modules /etc/nginx/modules
 sudo chown  root:root -R /etc/nginx/
 sudo chmod  777 -R /etc/nginx/
+echo "Validating nginx config ...."
 sudo nginx -t -c /etc/nginx/nginx.conf
 echo "Restarting nginx ...."
 sudo service nginx restart
