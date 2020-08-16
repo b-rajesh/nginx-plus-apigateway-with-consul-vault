@@ -1,7 +1,10 @@
-# diy-nginx-plus-api-gateway - build a opinionated APIGateway
+# This was built from https://github.com/b-rajesh/diy-nginx-plus-api-gateway to demo integration with Consul, VAult and IDP providers like OKTA & Auth0
 
 ## Pre-requisites
-
+```
+   *** This code is not tuned to run on local docker yet as it needs consul client. The upstream's are resolving to local consul client.
+   If you want to run this locally, you may have point the upstream endpoints locally
+```
 ### Obtain the NGINX Plus license :
 ```
    1. If you are planning to run nginx plus as apigateway then copy nginx plus license nginx-repo.crt & nginx-repo.key to /etc/ssl/nginx/
@@ -34,18 +37,6 @@ $ docker run --name mynginxplus_simple  -p 80:80 -p 443:443 -p 8080:8080 -p 8000
 $ http://localhost:8080/dashboard.html
 ```
 
-### Start testing the deployed API :
-
-```bash
-# [If you're using httpie] Main API traffic flowing through port 80. 
-$ http :/warehouse-api/inventory
-$ http :/warehouse-api/pricing
-# [If you're using curl] Main API traffic flowing through port 80.
-$ curl http://localhost/warehouse-api/inventory
-$ curl http://localhost/warehouse-api/pricing
-
-```
-
 ### Start testing the default API comes with NGiNX Plus API Gateway :
 
 ```bash
@@ -56,20 +47,6 @@ $ http :8080/api/6/http/upstreams
 $ curl http://localhost:8080/api/6/nginx
 $ curl http://localhost:8080/api/6/http/upstreams
 
-```
-
-
-### Docker commands to clean the nginx-plus containers and images create abvoe :
-
-```bash
-# To list nginxplus running container
-$ docker ps | grep mynginxplus_simple
-
-# To stop the nginxplus running container
-$ docker stop | docker ps | grep mynginxplus_simple
-
-# To remoe  the nginxplus iamge
-$ docker rmi nginx-plus-api-gateway-simple
 ```
 
 ### What's in the folder structure
